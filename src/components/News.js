@@ -7,12 +7,15 @@ const News= (props)=> {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    useEffect(async () => {      
-        let url= `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&apiKey=7a0e795d9c40404dafe3431b3344d115&pageSize=${props.pageSize}`;
-        let data= await fetch(url);
-        let parsedData= await data.json();
-        console.log(parsedData);
-        setArticles(parsedData.articles); 
+    useEffect(() => {      
+        const something=async ()=>{
+          let url= `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&apiKey=7a0e795d9c40404dafe3431b3344d115&pageSize=${props.pageSize}`;
+          let data= await fetch(url);
+          let parsedData= await data.json();
+          console.log(parsedData);
+          setArticles(parsedData.articles);   
+        } 
+        something();
     }, [])
 
     const handlePrevious = async () => {
@@ -60,10 +63,10 @@ const News= (props)=> {
         </div>
       </div>
     )
-  }
 
-News.defaultProps= {
-  category: "general"
-    }   
+  }  
+  News.defaultProps= {
+    category: "general"
+      }    
 
 export default News
